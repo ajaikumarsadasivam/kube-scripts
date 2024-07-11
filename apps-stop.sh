@@ -7,7 +7,7 @@ rep=0
 
 # switch to the cluster-context
 kubectl config use-context $context
-echo "Starting services for env: $ns"
+echo "Stopping services for env: $ns"
 
 # scale down apps
 echo "Scaling down the Apps to $rep"
