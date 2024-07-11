@@ -1,0 +1,10 @@
+{
+  "deployment":{
+    "app-frontend" : 2,
+    "app-backend" : 2
+  },
+  "statefulset":{
+    "db-server" : 1,
+    "redis" : 1
+  }
+}
