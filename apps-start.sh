@@ -9,14 +9,11 @@ rep=2
 kubectl config use-context $context
 echo "Starting services for env: $ns"
 
-# scale up deployment
-echo "Scaling up the deployment-apps to $rep"
+# scale up apps
+echo "Scaling up the Apps to $rep"
 dcount=$(kubectl get deploy -n $ns | tail -n +2 | awk '{print $1}' | wc -l)
-kubectl scale deploy --replicas=$rep -n $ns
-echo "$dcount - Deployment-service(s) Started.!"
-
-# scale up statefulset
-echo "Scaling up the statefulset-apps to $rep"
 scount=$(kubectl get sts -n $ns | tail -n +2 | awk '{print $1}' | wc -l)
-kubectl scale sts --replicas=$rep -n $ns
+
+kubectl scale deploy,sts --all --replicas=$rep -n $ns
+echo "$dcount - Deployment-service(s) Started.!"
 echo "$scount - Statefulset-service(s) Started.!"
